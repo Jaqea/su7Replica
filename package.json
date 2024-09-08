@@ -1,0 +1,58 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/**/*.{js,ts,jsx,tsx} --fix",
+    "format": "prettier --write src/**/*.{js,ts,jsx,tsx,json,css} ",
+    "prepare": "husky",
+    "commit": "git add . && git cz",
+    "changelog": "conventional-changelog -p gitmoji-config -i CHANGELOG.md -s"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "cz-config.cjs"
+    }
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.1",
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^22.5.4",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "commitizen": "^4.3.0",
+    "commitlint-config-cz": "^0.13.3",
+    "commitlint-config-git-commit-emoji": "^1.0.0",
+    "conventional-changelog-cli": "^5.0.0",
+    "conventional-changelog-gitmoji-config": "^1.5.2",
+    "cz-customizable": "^7.2.1",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "unocss": "^0.62.3",
+    "vite": "^5.4.1",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-progress": "^0.0.7",
+    "vite-plugin-pwa": "^0.20.5"
+  }
+}
