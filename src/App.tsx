@@ -1,9 +1,19 @@
-function App() {
+import { Canvas } from '@react-three/fiber';
+
+export default function App() {
   return (
     <>
+      <div id="canvas-container">
+        <Canvas>
+          <ambientLight intensity={0.1} />
+          <directionalLight color="red" position={[0, 0, 5]} />
+          <mesh>
+            <boxGeometry />
+            <meshStandardMaterial />
+          </mesh>
+        </Canvas>
+      </div>
       <h1 className="text-red-700">hello world</h1>
     </>
   );
 }
-
-export default App;
