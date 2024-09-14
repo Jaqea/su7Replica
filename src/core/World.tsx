@@ -10,9 +10,6 @@ export default function World() {
       >
         <color attach="background" args={['#15151a']} />
       </Canvas>
-      <Canvas>
-        <color attach={'background'} args={['#15151a']} />
-      </Canvas>
     </div>
   );
 }
