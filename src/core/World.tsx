@@ -1,15 +1,21 @@
 import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { CANVASCONFIG } from '@/constants';
+import { Car, Light, Shadow, EnvironmentLight, CameraRig } from './components';
 
 export default function World() {
   return (
-    <div id="canvas-container" className="w-full h-full">
-      <Canvas
-        gl={{ logarithmicDepthBuffer: true, antialias: true }}
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 15], fov: 25 }}
-      >
-        <color attach="background" args={['#15151a']} />
-      </Canvas>
-    </div>
+    <Canvas {...CANVASCONFIG}>
+      <Light />
+      <Car
+        scale={1.6}
+        position={[-0.5, -0.18, 0]}
+        rotation={[0, Math.PI / 5, 0]}
+      />
+      <Shadow />
+      <EnvironmentLight />
+      <CameraRig />
+      <OrbitControls />
+    </Canvas>
   );
 }
