@@ -6,8 +6,8 @@ import {
 } from '@/typings/canvasConfig';
 
 const CAMERA: CameraConfig = {
-  fov: 30,
-  position: [5, 0, 15],
+  fov: 25,
+  position: [5, 1.7, 15],
 };
 
 const RENDERER: RendererConfig = {

@@ -1,15 +1,11 @@
-import { RandomizedLightConfig, ShadowConfig } from '@/typings/shadowConfig';
+import { ContactShadowsConfig } from '@/typings/shadowConfig';
 
-export const SHADOWCONFIG: ShadowConfig = {
+export const CONTACTSHADOWS: ContactShadowsConfig = {
+  resolution: 1024,
+  frames: 1,
   position: [0, -1.16, 0],
-  frames: 100,
-  alphaTest: 0.9,
-  scale: 10,
-};
-
-export const RANDOMIZEDLIGHTCONFIG: RandomizedLightConfig = {
-  amount: 8,
-  radius: 10,
-  ambient: 0.5,
-  position: [1, 5, -1],
+  scale: 15,
+  blur: 0.5,
+  opacity: 1,
+  far: 20,
 };

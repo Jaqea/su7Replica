@@ -1,35 +1,31 @@
-import { useLayoutEffect } from 'react';
-import { applyProps } from '@react-three/fiber';
+import type { Mesh, MeshStandardMaterial, Group } from 'three';
+import { TextureLoader, Color } from 'three';
 import { useGLTF } from '@react-three/drei';
+import { flatModel } from '@/utils';
+import { useFrame, useLoader } from '@react-three/fiber';
 
 export default function Car(props) {
-  const { scene, nodes, materials } = useGLTF('/911-transformed.glb');
-  useLayoutEffect(() => {
-    Object.values(nodes).forEach(
-      (node) => node.isMesh && (node.receiveShadow = node.castShadow = true),
-    );
-    applyProps(materials.rubber, {
-      color: '#222',
-      roughness: 0.6,
-      roughnessMap: null,
-      normalScale: [4, 4],
+  const { scene } = useGLTF('/sm_car.gltf');
+  const ao = useLoader(TextureLoader, '/t_car_body_AO.raw.jpg');
+
+  const modelParts = flatModel(scene);
+  const Wheel = modelParts[35] as Group;
+  const body = modelParts[2] as Mesh;
+  const bodyMat = body.material as MeshStandardMaterial;
+  bodyMat.color = new Color('#26d6e9');
+
+  modelParts.forEach((item: Mesh) => {
+    if (item.isMesh) {
+      const mat = item.material as MeshStandardMaterial;
+      mat.aoMap = ao;
+    }
+  });
+
+  useFrame(() => {
+    Wheel?.children.forEach((item) => {
+      item.rotateZ(-10 * 0.03);
     });
-    applyProps(materials.window, {
-      color: 'black',
-      roughness: 0,
-      clearcoat: 0.1,
-    });
-    applyProps(materials.coat, {
-      envMapIntensity: 4,
-      roughness: 0.5,
-      metalness: 1,
-    });
-    applyProps(materials.paint, {
-      envMapIntensity: 2,
-      roughness: 0.45,
-      metalness: 0.8,
-      color: '#555',
-    });
-  }, [nodes, materials]);
+  });
+
   return <primitive object={scene} {...props} />;
 }

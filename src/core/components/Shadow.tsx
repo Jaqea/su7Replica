@@ -1,10 +1,6 @@
-import { AccumulativeShadows, RandomizedLight } from '@react-three/drei';
-import { SHADOWCONFIG, RANDOMIZEDLIGHTCONFIG } from '@/constants';
+import { ContactShadows } from '@react-three/drei';
+import { CONTACTSHADOWS } from '@/constants';
 
-export default function shadow() {
-  return (
-    <AccumulativeShadows {...SHADOWCONFIG}>
-      <RandomizedLight {...RANDOMIZEDLIGHTCONFIG} />
-    </AccumulativeShadows>
-  );
+export default function Shadow() {
+  return <ContactShadows {...CONTACTSHADOWS} />;
 }
