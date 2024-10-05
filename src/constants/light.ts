@@ -1,4 +1,7 @@
-import { SpotLightConfig, AmbientLightConfig } from '@/typings/lightConfig';
+import type {
+  SpotLightConfig,
+  AmbientLightConfig,
+} from '@/typings/lightConfig';
 
 export const SPOTLIGHT: SpotLightConfig = {
   position: [0, 15, 0],

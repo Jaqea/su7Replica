@@ -2697,7 +2697,7 @@ packages:
       suspend-react: 0.1.3(react@18.3.1)
       three: 0.168.0
       three-mesh-bvh: 0.7.7(three@0.168.0)
-      three-stdlib: 2.32.2(three@0.168.0)
+      three-stdlib: 2.33.0(three@0.168.0)
       troika-three-text: 0.49.1(three@0.168.0)
       tunnel-rat: 0.1.2(@types/react@18.3.5)(react@18.3.1)
       utility-types: 3.11.0
@@ -2765,7 +2765,7 @@ packages:
       postprocessing: 6.36.1(three@0.168.0)
       react: 18.3.1
       three: 0.168.0
-      three-stdlib: 2.32.2(three@0.168.0)
+      three-stdlib: 2.33.0(three@0.168.0)
     transitivePeerDependencies:
       - '@types/three'
     dev: false
@@ -7536,8 +7536,8 @@ packages:
       three: 0.168.0
     dev: false
 
-  /three-stdlib@2.32.2(three@0.168.0):
-    resolution: {integrity: sha512-ZN25Na/Xg7APhGKwJ1zhGdhZDsDGGnnm1k5Z+9LLlnfsFye4jigvbN3eA/Ta8hQmBNmEHXoozpmpKK1x8dCePQ==, tarball: https://registry.npmmirror.com/three-stdlib/-/three-stdlib-2.32.2.tgz}
+  /three-stdlib@2.33.0(three@0.168.0):
+    resolution: {integrity: sha512-V/uycBuqQOP/3Z+FBtpMdj2Ds5PyfJ3VDfMzktEmG4niOIzv7q1y5uMSbMcng0+057m1l0N147FQxsodQo9zBg==, tarball: https://registry.npmmirror.com/three-stdlib/-/three-stdlib-2.33.0.tgz}
     peerDependencies:
       three: '>=0.128.0'
     dependencies:

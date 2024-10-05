@@ -1,31 +1,44 @@
 import type { Mesh, MeshStandardMaterial, Group } from 'three';
-import { TextureLoader, Color } from 'three';
-import { useGLTF } from '@react-three/drei';
+import { Color, LinearSRGBColorSpace, NearestFilter } from 'three';
+import { useFrame } from '@react-three/fiber';
+import { CAR } from '@/constants';
+import { useResourceLoader } from '@/hooks';
 import { flatModel } from '@/utils';
-import { useFrame, useLoader } from '@react-three/fiber';
 
-export default function Car(props) {
-  const { scene } = useGLTF('/sm_car.gltf');
-  const ao = useLoader(TextureLoader, '/t_car_body_AO.raw.jpg');
+export default function Car() {
+  const { scene: carScene } = useResourceLoader({
+    name: 'car',
+    type: 'gltfModel',
+    path: 'car/mesh/sm_car.gltf',
+  });
+  const aoMap = useResourceLoader({
+    name: 'carAoMap',
+    type: 'texture',
+    path: 'car/texture/car_body_ao_map.jpg',
+  });
+  aoMap.flipY = false;
+  aoMap.colorSpace = LinearSRGBColorSpace;
+  aoMap.minFilter = NearestFilter;
+  aoMap.channel = 1;
 
-  const modelParts = flatModel(scene);
-  const Wheel = modelParts[35] as Group;
-  const body = modelParts[2] as Mesh;
-  const bodyMat = body.material as MeshStandardMaterial;
-  bodyMat.color = new Color('#26d6e9');
+  const carModelParts = flatModel(carScene);
+  const carBody = carModelParts[2] as Mesh;
+  const carWheel = carModelParts[35] as Group;
+  const carBodyMaterial = carBody.material as MeshStandardMaterial;
+  carBodyMaterial.color = new Color('#26d6e9');
 
-  modelParts.forEach((item: Mesh) => {
+  carModelParts.forEach((item: Mesh) => {
     if (item.isMesh) {
-      const mat = item.material as MeshStandardMaterial;
-      mat.aoMap = ao;
+      const itemMaterial = item.material as MeshStandardMaterial;
+      itemMaterial.aoMap = aoMap;
     }
   });
 
   useFrame(() => {
-    Wheel?.children.forEach((item) => {
+    carWheel?.children.forEach((item) => {
       item.rotateZ(-10 * 0.03);
     });
   });
 
-  return <primitive object={scene} {...props} />;
+  return <primitive object={carScene} {...CAR} />;
 }

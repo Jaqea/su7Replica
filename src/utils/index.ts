@@ -1,8 +1,8 @@
-import * as THREE from 'three';
+import { Object3D } from 'three';
 
 // 遍历模型，使其扁平化
-export const flatModel = (model: THREE.Object3D): THREE.Object3D[] => {
-  const modelPartsArray: THREE.Object3D[] = [];
+export const flatModel = (model: Object3D): Object3D[] => {
+  const modelPartsArray: Object3D[] = [];
   model.traverse((obj) => {
     modelPartsArray.push(obj);
   });

@@ -1,7 +1,9 @@
+import { Vector3 } from 'three';
 import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
-export default function CameraRig({ v = new THREE.Vector3() }) {
+export default function CameraRig() {
+  const v = new Vector3();
+
   return useFrame((state) => {
     const t = state.clock.elapsedTime;
     state.camera.position.lerp(

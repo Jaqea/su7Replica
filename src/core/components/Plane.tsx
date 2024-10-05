@@ -1,24 +1,39 @@
-import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import type { Mesh, MeshPhysicalMaterial } from 'three';
+import { useResourceLoader } from '@/hooks';
 import { flatModel } from '@/utils';
 
-function useTextureLoader(url: string) {
-  const map = useLoader(THREE.TextureLoader, url);
-  return map;
-}
-
 export default function Plane() {
-  const startRoomModel = useGLTF('/sm_startroom.raw.gltf');
-  const startRoomModelParts = flatModel(startRoomModel.scene);
-
-  const roomReflecFloorMesh = startRoomModelParts[2] as THREE.Mesh;
+  const startroomModel = useResourceLoader({
+    name: 'startroom',
+    type: 'gltfModel',
+    path: 'startroom/sm_startroom.raw.gltf',
+  });
+  const startroomModelParts = flatModel(startroomModel.scene);
+  const roomReflecFloorMesh = startroomModelParts[2] as Mesh;
   const roomFloorMaterial =
-    roomReflecFloorMesh.material as THREE.MeshPhysicalMaterial;
-  roomFloorMaterial.aoMap = useTextureLoader('/t_startroom_ao.raw.jpg');
-  roomFloorMaterial.lightMap = useTextureLoader('/t_startroom_light.raw.jpg');
-  roomFloorMaterial.normalMap = useTextureLoader('/t_floor_normal.webp');
-  roomFloorMaterial.roughnessMap = useTextureLoader('/t_floor_roughness.webp');
+    roomReflecFloorMesh.material as MeshPhysicalMaterial;
+
+  roomFloorMaterial.aoMap = useResourceLoader({
+    name: 'startroom_ao',
+    type: 'texture',
+    path: 'startroom/t_startroom_ao.raw.jpg',
+  });
+  roomFloorMaterial.lightMap = useResourceLoader({
+    name: 'startroom_light',
+    type: 'texture',
+    path: 'startroom/t_startroom_light.raw.jpg',
+  });
+  roomFloorMaterial.normalMap = useResourceLoader({
+    name: 'floor_normal',
+    type: 'texture',
+    path: 'startroom/t_floor_normal.webp',
+  });
+
+  roomFloorMaterial.roughnessMap = useResourceLoader({
+    name: 'floor_roughness',
+    type: 'texture',
+    path: 'startroom/t_floor_roughness.webp',
+  });
   roomFloorMaterial.envMapIntensity = 0;
 
   return (

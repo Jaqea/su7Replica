@@ -1,4 +1,4 @@
-import { ContactShadowsConfig } from '@/typings/shadowConfig';
+import type { ContactShadowsConfig } from '@/typings/shadowConfig';
 
 export const CONTACTSHADOWS: ContactShadowsConfig = {
   resolution: 1024,

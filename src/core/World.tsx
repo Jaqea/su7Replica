@@ -16,12 +16,7 @@ export default function World() {
     <Canvas {...CANVASCONFIG}>
       <color attach={'background'} args={['#15151a']} />
       <Light />
-      <Car
-        scale={1.6}
-        position={[-0.5, -1.16, 0]}
-        // rotation={[0, -Math.PI / 3.2, 0]}
-        rotation={[0, -Math.PI, 0]}
-      />
+      <Car />
       <EnvironmentLight />
       <Shadow />
       <Plane />
