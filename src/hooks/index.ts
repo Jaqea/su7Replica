@@ -1,1 +1,1 @@
-export * from './useResourceLoader';
+export * from './loaders';

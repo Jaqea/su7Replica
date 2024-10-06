@@ -15,23 +15,7 @@ export default function EnvironmentLight() {
 
   return (
     <>
-      <Environment frames={Infinity} blur={1} resolution={512}>
-        <group rotation={[0, 0.5, 0]}>
-          <group ref={group}>
-            {positions.map((x, i) => (
-              <Lightformer
-                key={i}
-                form="circle"
-                intensity={2}
-                rotation={[Math.PI / 2, 0, 0]}
-                position={[x, 4, i * 4]}
-                scale={[3, 1, 1]}
-              />
-            ))}
-          </group>
-        </group>
-      </Environment>
-      {/* <Environment
+      <Environment
         background
         frames={Infinity}
         blur={1}
@@ -52,7 +36,7 @@ export default function EnvironmentLight() {
             ))}
           </group>
         </group>
-      </Environment> */}
+      </Environment>
     </>
   );
 }

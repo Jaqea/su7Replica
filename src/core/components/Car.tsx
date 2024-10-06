@@ -2,20 +2,12 @@ import type { Mesh, MeshStandardMaterial, Group } from 'three';
 import { Color, LinearSRGBColorSpace, NearestFilter } from 'three';
 import { useFrame } from '@react-three/fiber';
 import { CAR } from '@/constants';
-import { useResourceLoader } from '@/hooks';
+import { useTextureLoader, useGLTFLoader } from '@/hooks';
 import { flatModel } from '@/utils';
 
 export default function Car() {
-  const { scene: carScene } = useResourceLoader({
-    name: 'car',
-    type: 'gltfModel',
-    path: 'car/mesh/sm_car.gltf',
-  });
-  const aoMap = useResourceLoader({
-    name: 'carAoMap',
-    type: 'texture',
-    path: 'car/texture/car_body_ao_map.jpg',
-  });
+  const { scene: carScene } = useGLTFLoader('car/mesh/sm_car.gltf');
+  const aoMap = useTextureLoader('car/texture/car_body_ao_map.jpg');
   aoMap.flipY = false;
   aoMap.colorSpace = LinearSRGBColorSpace;
   aoMap.minFilter = NearestFilter;
@@ -27,7 +19,7 @@ export default function Car() {
   const carBodyMaterial = carBody.material as MeshStandardMaterial;
   carBodyMaterial.color = new Color('#26d6e9');
 
-  carModelParts.forEach((item: Mesh) => {
+  carModelParts.forEach((item) => {
     if (item.isMesh) {
       const itemMaterial = item.material as MeshStandardMaterial;
       itemMaterial.aoMap = aoMap;
@@ -36,7 +28,7 @@ export default function Car() {
 
   useFrame(() => {
     carWheel?.children.forEach((item) => {
-      item.rotateZ(-10 * 0.03);
+      item.rotateZ(-10 * 0.2);
     });
   });
 

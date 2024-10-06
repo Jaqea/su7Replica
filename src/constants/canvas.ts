@@ -7,7 +7,8 @@ import type {
 
 const CAMERA: CameraConfig = {
   fov: 25,
-  position: [5, 1.7, 15],
+  // position: [5, 1.7, 15],
+  position: [0.5, 3, 11.5],
 };
 
 const RENDERER: RendererConfig = {
